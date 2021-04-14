@@ -18,6 +18,9 @@ my $pm = "$info->{base}/$info->{pm}";
 my $pod = "$info->{base}/$info->{pod}";
 my @modules = depend ($pm);
 @modules = grep !/Unicode::Confuse/, @modules;
+my $parse = "$Bin/../lib/Unicode/Confuse/Parse.pm";
+my @pmodules = depend ($parse);
+push @modules, @pmodules;
 
 SKIP: {
     if (! @modules) {
@@ -27,6 +30,5 @@ SKIP: {
     check_dep_section ($pod, \@modules);
     check_makefile_dep (\@modules);
 };
-
 
 done_testing ();

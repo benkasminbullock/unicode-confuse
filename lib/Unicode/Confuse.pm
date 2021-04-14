@@ -9,7 +9,7 @@ our @EXPORT_OK = qw/confusable canonical/;
 our %EXPORT_TAGS = (
     all => \@EXPORT_OK,
 );
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use Unicode::Confuse::Regex;
 
 my $re = $Unicode::Confuse::Regex::re;
@@ -18,7 +18,7 @@ use JSON::Parse 'read_json';
 
 my $jfile = __FILE__;
 $jfile =~ s!\.pm$!/confusables.json!;
-my $data = read_json ($jfile);
+our $data = read_json ($jfile);
 
 sub confusable
 {

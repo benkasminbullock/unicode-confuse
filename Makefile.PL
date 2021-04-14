@@ -13,6 +13,7 @@ WriteMakefile (
     AUTHOR => 'Ben Bullock <bkb@cpan.org>',
     LICENSE => 'perl',
     PREREQ_PM => {
+	'File::Slurper' => '0.012',
 	'JSON::Parse' => '0.61',
     },
     META_MERGE => {
@@ -31,5 +32,5 @@ WriteMakefile (
 #	    homepage => 'http://',
         },
     },
-    MIN_PERL_VERSION => '5.006001',
+    MIN_PERL_VERSION => '5.010',
 );

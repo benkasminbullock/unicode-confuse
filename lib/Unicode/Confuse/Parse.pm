@@ -9,7 +9,7 @@ use utf8;
 use Carp;
 use File::Slurper 'read_text';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 # A code point
 my $cp = qr!([0-9A-F]{4,5})\s+!;
@@ -23,11 +23,8 @@ my $cl = qr!(?<before>$ba)\s*(?<after>$ba)!;
 sub cp2s
 {
     my ($c) = @_;
-#    my $sep = '@@@@@@';
     $c =~ s!;$!!;
-#    $c =~ s!\s+!$sep!g;
     $c =~ s!$cp!chr (hex ($1))!ge;
-#    $c =~ s!\Q$sep!!g;
     return $c;
 }
 
