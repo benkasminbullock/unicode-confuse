@@ -18,3 +18,4 @@ lib/Unicode/Confusables.pod
 MANIFEST
 README
 examples/*-out.txt
+create-repo.pl

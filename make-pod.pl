@@ -23,7 +23,7 @@ my $info = get_info (%pbv);
 my $commit = get_commit (%pbv);
 # Names of the input and output files containing the documentation.
 
-my $pod = 'Confusables.pod';
+my $pod = 'Confuse.pod';
 my $input = "$Bin/lib/Unicode/$pod.tmpl";
 my $output = "$Bin/lib/Unicode/$pod";
 

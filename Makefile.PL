@@ -2,17 +2,18 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 
-my $pm = 'lib/Unicode/Confusables.pm';
-my $pod = 'lib/Unicode/Confusables.pod';
-my $github = 'github.com/benkasminbullock/unicode-confusables';
+my $pm = 'lib/Unicode/Confuse.pm';
+my $pod = 'lib/Unicode/Confuse.pod';
+my $github = 'github.com/benkasminbullock/unicode-confuse';
 my $repo = "https://$github";
 WriteMakefile (
-    NAME => 'Unicode::Confusables',
+    NAME => 'Unicode::Confuse',
     VERSION_FROM => $pm,
     ABSTRACT_FROM => $pod,
     AUTHOR => 'Ben Bullock <bkb@cpan.org>',
     LICENSE => 'perl',
     PREREQ_PM => {
+	'JSON::Parse' => '0.61',
     },
     META_MERGE => {
 	'meta-spec' => {

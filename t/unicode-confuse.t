@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use utf8;
 use Test::More;
-use_ok ('Unicode::Confusables');
+use_ok ('Unicode::Confuse');
 my $builder = Test::More->builder;
 binmode $builder->output,         ":utf8";
 binmode $builder->failure_output, ":utf8";
