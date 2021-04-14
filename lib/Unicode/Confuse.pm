@@ -10,16 +10,28 @@ our %EXPORT_TAGS = (
     all => \@EXPORT_OK,
 );
 our $VERSION = '0.01';
+use Unicode::Confuse::Regex;
+
+my $re = $Unicode::Confuse::Regex::re;
 
 use JSON::Parse 'read_json';
 
-# This is not exported. It parses the original confusables file.
+my $jfile = __FILE__;
+$jfile =~ s!\.pm$!/confusables.json!;
+my $data = read_json ($jfile);
 
-sub parse_file
+sub confusable
 {
-    my ($file) = @_;
-    return {};
+    my ($c) = @_;
+    return $c =~ $re;
 }
 
+sub canonical
+{
+    my ($c) = @_;
+    if ($c =~ $re) {
+	return $data->{confusables}{$c};
+    }
+}
 
 1;

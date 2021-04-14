@@ -14,11 +14,11 @@ MYMETA..*
 # Exclude backup files made by ExtUtils::MakeMaker
 .*\.bak
 # Exclude untarred distribution files
-^Unicode-Confusables-[0-9\.]+/$
+^Unicode-Confuse-[0-9\.]+/$
 # Exclude tarred distribution files
-^Unicode-Confusables-[0-9\.]+\.tar\.gz$
+^Unicode-Confuse-[0-9\.]+\.tar\.gz$
 # Template for building pod file.
-^lib/Unicode/Confusables.pod\.tmpl$
+^lib/Unicode/Confuse.pod\.tmpl$
 # Don't include the outputs from running the examples
 ^examples/.*-out\.txt$
 # Author tests

@@ -41,5 +41,8 @@ ok (! $files{"-out.txt"}, "no out.txt in distro");
 ok (! $files{"make-pod.pl"}, "no make-pod.pl in distro");
 ok (! $files{"build.pl"}, "no build.pl in distro");
 ok (keys %badfiles == 0, "no bad files");
+if (keys %badfiles > 0) {
+    diag "Bad files: " . join ("\n", keys %badfiles) . "\n";
+}
 done_testing ();
 

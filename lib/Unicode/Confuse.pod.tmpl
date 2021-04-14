@@ -31,16 +31,41 @@ corresponding to L<git commit [% commit.commit %]|[% info.repo
 
 =head1 DESCRIPTION
 
+Unicode confusables Perl module.
+
 =head1 FUNCTIONS
+
+=head2 canonical
+
+Give the canonical form of $c.
+
+=head2 confusable
+
+Is $c confusable, yes or no?
+
+=head1 DEPENDENCIES
+
+=over
+
+=item L<JSON::Parse>
+
+This is used to parse the JSON-formatted file of confusables
+distributed with the module.
+
+=back 
 
 =head1 SEE ALSO
 
-=head2 Unicode
+=head2 Unicode Consortium information
 
-L<http://www.unicode.org/reports/tr39> - documentation and usage
+=over
 
-L<https://www.unicode.org/Public/security/latest/confusablesSummary.txt> - download
+=item L<http://www.unicode.org/reports/tr39> - documentation and usage
 
+=item L<https://www.unicode.org/Public/security/latest/confusables.txt> - The data used by this module
 
+=item L<https://www.unicode.org/Public/security/latest/confusablesSummary.txt> - The same data in a different format
+
+=back
 
 [% INCLUDE "author" %]

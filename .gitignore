@@ -14,7 +14,9 @@ blib/*
 MYMETA.*
 META.*
 ppport.h
-lib/Unicode/Confusables.pod
+lib/Unicode/Confuse.pod
+lib/Unicode/Confuse/Regex.pm
+lib/Unicode/Confuse/confusables.json
 MANIFEST
 README
 examples/*-out.txt
