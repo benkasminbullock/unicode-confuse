@@ -89,6 +89,7 @@ sub write_regex_module ($keys)
 package Unicode::Confuse::Regex;
 use warnings;
 use strict;
+use utf8;
 our \$VERSION = $version;
 
 # Some people, when faced with a problem, think "I know, I'll use a
