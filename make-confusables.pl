@@ -2,16 +2,17 @@
 use warnings;
 use strict;
 use utf8;
+use feature 'signatures';
+no warnings 'experimental::signatures';
+
 use FindBin '$Bin';
 use JSON::Create 'write_json';
-use lib "$Bin/lib";
-use Unicode::Confuse::Parse 'parse_confusables';
 use Getopt::Long;
 use Convert::Moji 'make_regex';
 use List::Util 'uniq';
 use File::Slurper qw!read_text write_text!;
-use feature 'signatures';
-no warnings 'experimental::signatures';
+use lib "$Bin/lib";
+use Unicode::Confuse::Parse qw!parse_confusables metadata!;
 
 my $file = '/home/ben/data/unicode/confusables/confusables.txt';
 my $ok = GetOptions (
@@ -61,6 +62,11 @@ for my $k (keys %rev) {
 $thing{reverse} = \%rev;
 write_json ($out, \%thing, indent => 1, sort => 1);
 write_regex_module (\@keys);
+
+my $metadata = metadata ($file);
+write_json ("$Bin/confusables-metadata.json", $metadata,
+	    indent => 1, sort => 1);
+
 exit;
 
 sub write_regex_module ($keys)
@@ -106,5 +112,3 @@ EOF
     write_text ($out, $reout);
     chmod 0444, $out;
 }
-
-

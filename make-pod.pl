@@ -7,6 +7,8 @@ use Perl::Build qw/get_info get_commit/;
 use Perl::Build::Pod ':all';
 use Deploy qw/do_system older/;
 use Getopt::Long;
+use JSON::Parse 'read_json';
+
 my $ok = GetOptions (
     'force' => \my $force,
     'verbose' => \my $verbose,
@@ -29,9 +31,12 @@ my $output = "$Bin/lib/Unicode/$pod";
 
 # Template toolkit variable holder
 
+my $metadata = read_json ("$Bin/confusables-metadata.json");
+
 my %vars = (
     info => $info,
     commit => $commit,
+    metadata => $metadata,
 );
 
 my $tt = Template->new (
@@ -69,7 +74,7 @@ exit;
 
 sub usage
 {
-print <<USAGEEOF;
+    print <<USAGEEOF;
 --verbose
 --force
 USAGEEOF

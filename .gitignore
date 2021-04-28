@@ -21,3 +21,5 @@ MANIFEST
 README
 examples/*-out.txt
 create-repo.pl
+#
+confusables-metadata.json
