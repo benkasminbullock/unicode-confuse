@@ -9,7 +9,7 @@ our @EXPORT_OK = qw/confusable canonical/;
 our %EXPORT_TAGS = (
     all => \@EXPORT_OK,
 );
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 use Unicode::Confuse::Regex;
 
 my $re = $Unicode::Confuse::Regex::re;

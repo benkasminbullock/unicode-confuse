@@ -1,5 +1,9 @@
 Revision history for Perl module Unicode::Confusables
 
+0.04 2021-04-29
+
+- Document the version of confusables.txt used
+
 0.03 2021-04-15
 
 - Correct encoding for regex
