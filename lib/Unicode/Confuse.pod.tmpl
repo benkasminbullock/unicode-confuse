@@ -21,7 +21,7 @@ This method was added in version [% version %] of the module.
 
 =head1 SYNOPSIS
 
-    use [% info.colon %];
+[% example("synopsis") %]
 
 =head1 VERSION
 
@@ -31,7 +31,7 @@ corresponding to L<git commit [% commit.commit %]|[% info.repo
 
 This Perl module incorporates [% metadata.title %] version [%
 metadata.version %] dated [% metadata.date %], copyright [%
-metadata.copyright %]. [% metadata.terms %]
+metadata.copyright %]. [% metadata.terms %].
 
 =head1 DESCRIPTION
 
@@ -45,8 +45,11 @@ different Unicode code points.
 
    my $canonical = canonical ($c);
 
-If C<$c> is a confusable, give the canonical form of C<$c>. If not,
-returns the undefined value.
+If C<$c> is a confusable, give the canonical form of C<$c>. If $c is
+already the canonical form of itself, return $c. If C<$c> is not a
+confusable, this returns the undefined value. "Canonical" here just
+means the character which is used as a representative of the group of
+confusables in the L</Unicode data files>.
 
 =head2 confusable
 
@@ -54,8 +57,29 @@ returns the undefined value.
         # do something.
     }
 
-Is C<$c> confusable, yes or no? This matches C<$c> against the large
-regex in L<Unicode::Confuse::Regex>.
+This returns a true or false value depending on whether C<$c> is a
+confusable. This matches C<$c> against a large regex in
+L<Unicode::Confuse::Regex>.
+
+=head2 similar
+
+    my @similar = similar ('p');
+
+Return a list of confusables which are similar to the given input. If
+the input is not a confusable, an empty list is returned.
+
+The first character in C<@similar> is the canonical form, and the
+remaining characters are the other confusables associated with that
+canonical form. These remaining characters, if more than one, are
+sorted by code point.
+
+=head3 Example: obfuscate text
+
+This example obfuscates strings by substituting confusable letters
+with substitutes picked at random from the confusable data for the
+letters.
+
+[% example("obfuscate") %]
 
 =head1 DEPENDENCIES
 
@@ -63,9 +87,7 @@ regex in L<Unicode::Confuse::Regex>.
 
 =item L<File::Slurper>
 
-This is used by the parsing module L<Unicode::Confuse::Parse>. You
-don't actually need to use the parsing module to use this module with
-the built-in version of the data.
+This is used by the parsing module L<Unicode::Confuse::Parse>.
 
 =item L<JSON::Parse>
 
@@ -131,6 +153,18 @@ The following links point to the latest data files:
 =item L<The data used by this module|https://www.unicode.org/Public/security/latest/confusables.txt>
 
 =item L<The same data in a different format|https://www.unicode.org/Public/security/latest/confusablesSummary.txt>
+
+=back
+
+=item L<Unicode Utilities: Confusables|https://util.unicode.org/UnicodeJsps/confusables.jsp>
+
+The utility says
+
+=over
+
+With this demo, you can supply an Input string and see the
+combinations that are confusable with it, using data collected by the
+Unicode consortium.
 
 =back
 

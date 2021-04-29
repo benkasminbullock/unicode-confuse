@@ -8,6 +8,8 @@ use Perl::Build::Pod ':all';
 use Deploy qw/do_system older/;
 use Getopt::Long;
 use JSON::Parse 'read_json';
+use ExtUtils::ParseXS::Utilities 'trim_whitespace';
+use File::Slurper 'write_text';
 
 my $ok = GetOptions (
     'force' => \my $force,
@@ -61,13 +63,17 @@ for my $example (@examples) {
     my $output = $example;
     $output =~ s/\.pl$/-out.txt/;
     if (older ($output, $example) || $force) {
-	do_system ("perl -I$Bin/blib/lib -I$Bin/blib/arch $example > $output 2>&1", $verbose);
+	do_system ("perl -I$Bin/lib $example > $output 2>&1", $verbose);
     }
 }
 
 chmod 0644, $output;
-$tt->process ($input, \%vars, $output, binmode => 'utf8')
+$tt->process ($input, \%vars, \my $outtext, binmode => 'utf8')
     or die '' . $tt->error ();
+trim_whitespace ($outtext);
+$outtext .= "\n";
+$outtext =~ s!\n\n+!\n\n!g;
+write_text ($output, $outtext);
 chmod 0444, $output;
 
 exit;

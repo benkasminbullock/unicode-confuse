@@ -12,7 +12,7 @@ use utf8;
 use Carp;
 use File::Slurper 'read_text';
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 # A code point
 my $cp = qr!([0-9A-F]{4,5})\s+!;
@@ -100,6 +100,7 @@ sub metadata
 	    next;
 	}
 	if ($data =~ /terms of use/i) {
+	    $data =~ s!(https?://.*\.html)!L<$1>!;
 	    $md{terms} = $data;
 	    next;
 	}
