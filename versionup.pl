@@ -49,5 +49,3 @@ if ($text =~ s/(\Q$version\E)/$latest$1/g) {
 else {
     warn "$changes failed";
 }
-
-

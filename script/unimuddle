@@ -1,0 +1,27 @@
+#!/home/ben/software/install/bin/perl
+use warnings;
+use strict;
+use utf8;
+use feature 'signatures';
+no warnings 'experimental::signatures';
+use Unicode::Confuse 'similar';
+use Unicode::Confuse::Regex;
+my $re = $Unicode::Confuse::Regex::re;
+binmode STDOUT, ":encoding(utf8)";
+binmode STDIN, ":encoding(utf8)";
+
+while (<STDIN>) {
+    s/($re)/sim ($1)/ge;
+    print;
+}
+
+sub sim ($c)
+{
+    my @subs = similar ($c);
+    die "Bad $c not confusable" unless @subs;
+    return $subs[int (rand (@subs))];
+}
+
+# Local variables:
+# mode: perl
+# End:
